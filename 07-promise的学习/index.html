@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<script>
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // console.log('请求2s后拿到结果');
+            resolve('请求2s后拿到结果')
+        }, 2000)
+        // reject('bbb')
+    }).then(res => {
+        console.log(res);
+    }).catch(err => {
+        console.log(err);
+    })
+
+
+    console.log('先打印，是异步的');
+</script>
+</body>
+</html>

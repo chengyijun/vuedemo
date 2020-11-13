@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<template id="cpn">
+    <div>
+        <slot></slot>
+    </div>
+</template>
+<div id="app">
+    <div>
+
+        <cpn @sendbooks="getbooks">
+            <ul>
+                <li v-for="item in books">{{item}}</li>
+            </ul>
+        </cpn>
+
+    </div>
+</div>
+<script>
+    const cpn = {
+        template: '#cpn',
+        data() {
+            return {
+                books: ['python', 'java', 'javascript', 'html', 'css']
+            }
+        },
+        created() {
+            console.log('子发射事件信号');
+            this.$emit('sendbooks', this.books)
+        }
+
+    }
+
+    new Vue({
+        el: '#app',
+        data: {
+            books: []
+        },
+        methods: {
+            btnClick() {
+                console.log(typeof this.$refs.aaa.books);
+                console.log(this.$refs.aaa.books);
+                let arr = Array.from(this.$refs.aaa.books)
+                console.log(arr);
+                console.log(typeof arr);
+            },
+            getbooks(books) {
+                this.books = books
+                console.log('收到', books);
+            }
+        },
+        components: {
+            cpn
+        }
+
+    })
+</script>
+</body>
+</html>

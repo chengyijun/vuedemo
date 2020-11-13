@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+
+<div id="app">
+    <div>
+        {{message}}
+        <!--如果props中对应的变量是驼峰写法，cpn组件传入绑定属性值的时候 变量需要‘-’符号进行分割代替驼峰-->
+        <cpn :c-message="message"></cpn>
+    </div>
+</div>
+
+<template id="cpn">
+    <div>
+        <h1>这里是cpn组件</h1>
+        <h2>{{cMessage}}</h2>
+    </div>
+</template>
+
+<script src="../js/vue.min.js"></script>
+<script>
+    const cpn = {
+        template: '#cpn',
+        data() {
+            return {
+                info: 'hi abelrox'
+            }
+        },
+        props: {
+            cMessage: {
+                type: Object,
+                default() {
+                    return {
+                        name: 'rox',
+                        age: 33
+                    }
+                }
+            }
+        }
+    }
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: {
+                name: 'abel',
+                age: 12
+            }
+        },
+        components: {
+            cpn
+        }
+    })
+</script>
+</body>
+</html>

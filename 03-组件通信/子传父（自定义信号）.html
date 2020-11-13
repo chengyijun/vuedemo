@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+
+<template id="cpn">
+
+    <div>
+        <button v-for="num in nums" @click="itemclick(num)">按钮{{num}}</button>
+    </div>
+
+</template>
+
+<div id="app">
+    <div>
+        <!--连接信号与槽函数-->
+        <cpn @itemclick="show"></cpn>
+    </div>
+</div>
+<script>
+    const cpn = {
+        template: '#cpn',
+        data() {
+            return {
+                nums: 3
+            }
+        },
+        methods: {
+            itemclick(num) {
+                // 发射一个事件信号
+                this.$emit('itemclick', num)
+                console.log('发射了' + num);
+            }
+        }
+    }
+
+    new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            show(msg) {
+                console.log('接收了' + msg);
+            }
+        },
+        components: {
+            cpn
+        }
+    })
+</script>
+</body>
+</html>

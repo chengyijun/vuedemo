@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>
+        {{info}}
+        <br/>
+        <input type="text" :value="info" @input="inputMethod">
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            info: '123'
+        },
+        methods: {
+            inputMethod(event) {
+                console.log(event.target.value);
+                this.info = event.target.value
+            }
+        }
+    })
+</script>
+</body>
+</html>

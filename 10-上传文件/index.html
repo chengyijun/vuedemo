@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/axios.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--  多文件上传 multiple="multiplt" -->
+    <!--    <input type="file" id="fileExport" @change="handleFileChange" ref="inputer" multiple="multiplt">-->
+    <input type="file" id="fileExport" @change="handleFileChange" ref="inputer">
+    <button @click="btnClick">上传</button>
+    <h2>{{info}}</h2>
+    <a href="./template.xlsx">下载结果文档</a>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            info: '无结果'
+        },
+        methods: {
+            handleFileChange(e) {
+                // console.log(e.target.files)
+                let inputDOM = this.$refs.inputer;
+                this.file = inputDOM.files[0];// 通过DOM取文件数据
+                let size = Math.floor(this.file.size / 1024);//计算文件的大小　
+                this.formData = new FormData();//new一个formData事件
+                this.formData.append("file", this.file); //将file属性添加到formData里
+                //此时formData就是我们要向后台传的参数了
+                console.log(this.file);
+            },
+
+            btnClick() {
+                axios({
+                    method: 'post',
+                    url: 'http://127.0.0.1:5000/test_api',
+                    data: this.formData,
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then(response => {
+
+                    if (response.data.code === 1) {
+                        this.info = response.data.info
+                    }
+                }).catch(function (error) { // 请求失败处理
+                    console.log(error);
+                });
+            }
+        }
+    })
+</script>
+</body>
+</html>

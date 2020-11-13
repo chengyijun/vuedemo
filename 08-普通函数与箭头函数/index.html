@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function add() {
+        console.log(this)
+    }
+
+    add()  // 相当于执行了window.add() 谁调用的 函数内部this就是指向谁
+
+    class Person {
+
+        test() {
+            setTimeout(function () {
+                console.log(this)
+            }, 1000)
+        }
+
+        say() {
+            setTimeout(() => {
+                console.log(this)
+            }, 1000)
+        }
+    }
+
+    const p = new Person()
+    p.test()
+    p.say()
+</script>
+</body>
+</html>

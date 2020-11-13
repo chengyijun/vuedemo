@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>
+        {{info}}
+        <br/>
+        <input type="text" v-model="info">
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            info: '123'
+        },
+        watch: {
+
+            // 监听数据的改变  函数名称必须和想被监听的数据属性名一致
+            info(newValue, oldValue) {
+                console.log(newValue);
+                console.log(oldValue);
+            }
+        }
+    })
+</script>
+</body>
+</html>

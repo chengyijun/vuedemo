@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Dog {
+        static legs = 4
+
+        constructor(name, color, gender) {
+            this.name = name
+            this.color = color
+            this.gender = gender
+        }
+
+        say() {
+            console.log('汪汪汪')
+        }
+
+        static showLegs() {
+            return Dog.legs
+        }
+    }
+
+    dog = new Dog('小黑', '黑色', '雄性')
+    dog.say()
+    console.log(Dog.showLegs());
+
+
+    // Dog.prototype 表示Dog类的原型类  给原型类添加方法  则生成本类时 也就有该方法
+    // 类似 python中的metaclass
+    Dog.prototype.fly = function () {
+        console.log('可以飞');
+    }
+
+
+    dog.fly()
+
+</script>
+</body>
+</html>

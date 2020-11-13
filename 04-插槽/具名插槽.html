@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<template id="cpn">
+    <div>
+        <slot name="left">左边</slot>
+        <slot name="center">中间</slot>
+        <slot name="right">右边</slot>
+    </div>
+</template>
+<div id="app">
+    <div>
+        <cpn>
+            <span slot="left">左边的内容</span>
+            <span slot="center">中间的内容</span>
+            <span slot="right">右边的内容</span>
+        </cpn>
+    </div>
+</div>
+<script>
+    const cpn = {
+        template: '#cpn',
+
+    }
+
+    new Vue({
+        el: '#app',
+        components: {
+            cpn
+        }
+
+    })
+</script>
+</body>
+</html>

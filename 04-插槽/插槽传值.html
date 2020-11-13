@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<template id="cpn">
+    <div>
+
+        <slot :books="books"></slot>
+    </div>
+</template>
+<div id="app">
+    <div>
+
+        <cpn>
+            <ul slot-scope="slot">
+                <li v-for="item in slot.books">{{item}}</li>
+            </ul>
+        </cpn>
+
+    </div>
+</div>
+<script>
+    const cpn = {
+        template: '#cpn',
+        data() {
+            return {
+                books: ['python', 'java', 'javascript']
+            }
+        }
+
+    }
+
+    new Vue({
+        el: '#app',
+        methods: {
+            btnClick() {
+                console.log(typeof this.$refs.aaa.books);
+                console.log(this.$refs.aaa.books);
+                let arr = Array.from(this.$refs.aaa.books)
+                console.log(arr);
+                console.log(typeof arr);
+            }
+        },
+        components: {
+            cpn
+        }
+
+    })
+</script>
+</body>
+</html>
